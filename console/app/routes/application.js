@@ -60,7 +60,8 @@ export default class ApplicationRoute extends Route {
         super.init(...arguments);
         const { shouldInstall, shouldOnboard, defaultTheme } = await this.checkInstallationStatus();
 
-        this.defaultTheme = defaultTheme;
+        // Always use light mode
+        this.defaultTheme = 'light';
 
         if (shouldInstall) {
             return this.router.transitionTo('install');
@@ -114,18 +115,18 @@ export default class ApplicationRoute extends Route {
             bodyClassNames.pushObject(['is-electron']);
         }
 
-        this.theme.initialize({ bodyClassNames, theme: this.defaultTheme });
+        this.theme.initialize({ bodyClassNames, theme: 'light' });
     }
 
     /**
      * Initializes the application's locale settings based on the current user's preferences.
      *
      * This method retrieves the user's preferred locale using the `getOption` method from the `currentUser` service.
-     * If no locale is set by the user, it defaults to `'en-US'`. It then sets the application's locale by calling
+     * If no locale is set by the user, it defaults to `'es-mx'` (Spanish Mexico). It then sets the application's locale by calling
      * the `setLocale` method of the `intl` service with the retrieved locale.
      */
     initializeLocale() {
-        const locale = this.currentUser.getOption('locale', 'en-US');
+        const locale = this.currentUser.getOption('locale', 'es-mx');
         this.intl.setLocale([locale]);
     }
 

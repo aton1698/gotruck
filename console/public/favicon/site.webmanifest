@@ -1,7 +1,1 @@
-{
-    "name": "Fleetbase Console",
-    "short_name": "Fleetbase",
-    "theme_color": "#3a0000",
-    "background_color": "#ffffff",
-    "display": "standalone"
-}
+{"name":"GoTruck","short_name":"GoTruck","theme_color":"#001528","background_color":"#ffffff","display":"standalone","icons":[{"src":"/images/icon.png","sizes":"192x192","type":"image/png"},{"src":"/images/icon.png","sizes":"256x256","type":"image/png"}]}

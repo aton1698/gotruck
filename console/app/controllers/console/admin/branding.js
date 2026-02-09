@@ -134,6 +134,8 @@ export default class ConsoleAdminBrandingController extends Controller {
 
         // Normalize icon URL before saving
         this.normalizeIconUrl();
+        // Always use light mode
+        this.model.set('default_theme', 'light');
 
         return this.model
             .save()

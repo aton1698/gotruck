@@ -1,5 +1,5 @@
 app:
-  name: Fleetbase
+  name: GoTruck
 common:
   new: Nuevo
   create: Crear
@@ -103,6 +103,7 @@ common:
   warning: Advertencia
   info: Información
   ready: Listo
+  activity: Actividad
   active: Activo
   inactive: Inactivo
   enabled: Habilitado

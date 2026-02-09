@@ -30,6 +30,15 @@ export default class ConsoleController extends Controller {
         return dasherize(this.router.currentRouteName.replace(/\./g, ' '));
     }
 
+    /** Ocultar el botón de minimizar la barra lateral solo en el homepage; visible en el resto. */
+    get showSidebarToggle() {
+        return this.router.currentRouteName !== 'console.home';
+    }
+
+    get sidebarToggleEnabled() {
+        return !this.hiddenSidebarRoutes.includes(this.router.currentRouteName);
+    }
+
     constructor() {
         super(...arguments);
         this.router.on('routeDidChange', (transition) => {
@@ -43,7 +52,6 @@ export default class ConsoleController extends Controller {
                 // Hide the sidebar if the current route is in hiddenSidebarRoutes
                 if (shouldHideSidebar) {
                     this.sidebar.hideNow();
-                    this.sidebarToggleEnabled = false;
                     return; // Exit early as no further action is required
                 }
 
@@ -55,8 +63,6 @@ export default class ConsoleController extends Controller {
                     this.sidebar.show();
                 }
 
-                // Ensure toggle is enabled unless on a hidden route
-                this.sidebarToggleEnabled = !shouldHideSidebar;
             }
         });
     }
@@ -88,7 +94,6 @@ export default class ConsoleController extends Controller {
 
         if (this.hiddenSidebarRoutes.includes(this.router.currentRouteName)) {
             this.sidebar.hideNow();
-            this.sidebarToggleEnabled = false;
         }
     }
 

@@ -56,12 +56,18 @@ body.console-admin-organizations-index-index .next-table-wrapper > table {
     align-items: center;
     justify-content: center;
     text-align: center;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+#boot-loader > .loader-container > .boot-loader-icon {
+    flex-shrink: 0;
 }
 
 #boot-loader > .loader-container > .loading-message {
-    margin-left: 0.5rem;
+    margin-left: 0;
     font-weight: 600;
-    font-size: 0.875rem;
+    font-size: 1.125rem;
 }
 
 body[data-theme='dark'] #boot-loader > .loader-container > .loading-message {
@@ -69,9 +75,439 @@ body[data-theme='dark'] #boot-loader > .loader-container > .loading-message {
 }
 
 body[data-theme='light'] .next-view-container {
-    background-color: #001528;
+    background-color: #ffffff;
 }
 
-body[data-theme='dark'] .next-view-container {
-    background-color: #3a0000;
+/* Key metrics cards: blue palette (#0D80FF / #001528) - Métricas clave y Métricas de la tienda */
+.dashboard-component-count,
+.widget-count,
+.fleetbase-dashboard-grid .dashboard-component-count,
+.fleetbase-dashboard-grid .widget-count,
+[class*="dashboard-grid"] .dashboard-component-count,
+[class*="dashboard-grid"] .widget-count {
+    background-color: rgb(13 128 255 / 0.12) !important;
+    border: 1px solid rgb(0 21 40 / 0.2) !important;
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
+.dashboard-component-count h3,
+.widget-count h3,
+.dashboard-component-count h1,
+.widget-count h1 {
+    color: #001528 !important;
+}
+
+/* Auth login page: icon.png unchanged; buttons = bright blue #0D80FF */
+.auth-login .btn-primary,
+.auth-login button[type="submit"].btn,
+.auth-login .btn.btn-primary {
+    background-color: #0D80FF;
+    border-color: #0D80FF;
+}
+.auth-login .btn-primary:hover,
+.auth-login button[type="submit"].btn:hover,
+.auth-login .btn.btn-primary:hover {
+    background-color: #0a6ad9;
+    border-color: #0a6ad9;
+}
+.auth-login .btn-default,
+.auth-login .btn.btn-default {
+    border-color: #0D80FF;
+    color: #0D80FF;
+}
+.auth-login .btn-default:hover,
+.auth-login .btn.btn-default:hover {
+    background-color: rgb(13 128 255 / 0.1);
+    border-color: #0D80FF;
+    color: #001528;
+}
+
+/* Header nav: hover = darker blue for better text contrast; active = bright blue #0D80FF */
+.next-view-header .next-view-header-item:hover,
+.next-view-header a[role="menuitem"]:hover,
+.next-view-header [class*="header-item"]:hover {
+    background-color: #0a6ad9 !important;
+    color: #fff !important;
+    border-radius: 0.375rem;
+}
+.next-view-header .next-view-header-item.is-active,
+.next-view-header a[role="menuitem"].is-active,
+.next-view-header .next-view-header-item.active,
+.next-view-header a[role="menuitem"].active {
+    background-color: #0D80FF !important;
+    color: #fff !important;
+    border-color: #0D80FF !important;
+}
+
+/* Sidebar: secciones (Operaciones, Recursos…) — enlace ocupa todo el elemento (clickeable en toda la barra), sin hover en el texto */
+.next-sidebar-content-inner [class*="panel"] > a,
+.next-sidebar-content-inner [class*="Panel"] > a,
+.next-sidebar-content-inner [class*="group"] > a,
+.next-sidebar-content-inner [class*="Group"] > a,
+.next-sidebar-content-inner [class*="panel-header"] a,
+.next-sidebar-content-inner [class*="group-header"] a,
+#sidebar-menu-items [class*="panel"] > a,
+#sidebar-menu-items [class*="group"] > a,
+#sidebar-menu-items [class*="panel-header"] a,
+#sidebar-menu-items [class*="group-header"] a,
+.next-sidebar [class*="panel"] > a,
+.next-sidebar [class*="group"] > a,
+.next-sidebar [class*="panel-header"] a,
+.next-sidebar [class*="group-header"] a {
+    display: flex !important;
+    align-items: center !important;
+    width: 100% !important;
+    min-height: 2.5rem !important;
+    padding: 0.5rem 1rem !important;
+    box-sizing: border-box !important;
+}
+.next-sidebar-content-inner [class*="panel"] > a *,
+.next-sidebar-content-inner [class*="group"] > a *,
+.next-sidebar-content-inner [class*="panel-header"] a *,
+.next-sidebar-content-inner [class*="group-header"] a *,
+#sidebar-menu-items [class*="panel"] > a *,
+#sidebar-menu-items [class*="group"] > a * {
+    pointer-events: none;
+}
+/* Sin hover en títulos de sección (Operaciones, Recursos…) */
+.next-sidebar-content-inner [class*="panel"] > a:hover,
+.next-sidebar-content-inner [class*="group"] > a:hover,
+.next-sidebar-content-inner [class*="panel-header"] a:hover,
+.next-sidebar-content-inner [class*="group-header"] a:hover,
+#sidebar-menu-items [class*="panel"] > a:hover,
+#sidebar-menu-items [class*="group"] > a:hover,
+#sidebar-menu-items [class*="panel-header"] a:hover,
+#sidebar-menu-items [class*="group-header"] a:hover,
+.next-sidebar [class*="panel"] > a:hover,
+.next-sidebar [class*="group"] > a:hover {
+    background-color: transparent !important;
+}
+
+/* Sidebar: alineación unificada en todas las páginas — ítems con icono (sublista) indentados a la derecha */
+.next-sidebar .next-nav-item,
+.next-sidebar-content-inner .next-nav-item,
+#sidebar-menu-items .next-nav-item,
+.next-sidebar a.next-nav-item,
+.next-sidebar-content-inner a.next-nav-item,
+#sidebar-menu-items a.next-nav-item {
+    padding-left: 1.75rem !important;
+    padding-right: 0.75rem !important;
+    min-height: 2.5rem !important;
+    display: flex !important;
+    align-items: center !important;
+    box-sizing: border-box !important;
+}
+/* Misma alineación en Recursos y todas las secciones: contenedores de ítems sin padding/margin extra */
+#sidebar-menu-items [class*="panel"] > div,
+#sidebar-menu-items [class*="group"] > div,
+#sidebar-menu-items [class*="panel"] > ul,
+#sidebar-menu-items [class*="group"] > ul,
+.next-sidebar [class*="panel"] > div,
+.next-sidebar [class*="group"] > div,
+.next-sidebar-content-inner [class*="panel"] > div,
+.next-sidebar-content-inner [class*="group"] > div {
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+}
+#sidebar-menu-items [class*="panel"] .next-nav-item,
+#sidebar-menu-items [class*="group"] .next-nav-item,
+.next-sidebar [class*="panel"] .next-nav-item,
+.next-sidebar [class*="group"] .next-nav-item {
+    padding-left: 1.75rem !important;
+}
+/* Sin sangría extra en filas/items de lista para que Conductores, Vehículos y Flotas queden igual */
+#sidebar-menu-items [class*="panel"] li,
+#sidebar-menu-items [class*="group"] li,
+#sidebar-menu-items [class*="list-group-item"],
+.next-sidebar [class*="panel"] li,
+.next-sidebar [class*="group"] li {
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+}
+/* Títulos de sección (Operaciones, Recursos…) — texto a la izquierda, flecha abrir/cerrar a la derecha */
+.next-sidebar [class*="panel"] > a,
+.next-sidebar [class*="group"] > a,
+.next-sidebar-content-inner [class*="panel"] > a,
+.next-sidebar-content-inner [class*="group"] > a,
+#sidebar-menu-items [class*="panel"] > a,
+#sidebar-menu-items [class*="group"] > a,
+.next-sidebar [class*="panel-header"] a,
+.next-sidebar [class*="group-header"] a,
+#sidebar-menu-items [class*="panel-header"] a,
+#sidebar-menu-items [class*="group-header"] a {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    justify-content: space-between !important;
+}
+/* Flecha (expandir/cerrar) alineada al final a la derecha — primer hijo en el DOM suele ser el icono */
+.next-sidebar [class*="panel"] > a > *:first-child,
+.next-sidebar [class*="group"] > a > *:first-child,
+.next-sidebar-content-inner [class*="panel"] > a > *:first-child,
+.next-sidebar-content-inner [class*="group"] > a > *:first-child,
+#sidebar-menu-items [class*="panel"] > a > *:first-child,
+#sidebar-menu-items [class*="group"] > a > *:first-child {
+    margin-left: auto !important;
+}
+
+/* Sidebar & engine: selected/active and hover = bright blue #0D80FF */
+.next-sidebar-content-inner .active,
+.next-sidebar-content-inner a.active,
+.next-sidebar-content-inner [class*="active"].nav-link,
+#sidebar-menu-items .active,
+#sidebar-menu-items a.active,
+#sidebar-menu-items [aria-current="page"],
+.next-sidebar a.active,
+.next-sidebar [class*="sidebar-item"].active,
+.next-sidebar [class*="sidebar-item"].is-active {
+    background-color: #0D80FF !important;
+    color: #fff !important;
+    border-color: #0D80FF !important;
+}
+/* Sidebar: hover = mismo azul que el resto de botones (#0a6ad9), nunca blanco */
+.next-sidebar-content-inner a:hover,
+.next-sidebar-content-inner [role="menuitem"]:hover,
+.next-sidebar-content-inner .nav-link:hover,
+.next-sidebar-content-inner [class*="sidebar-item"]:hover,
+.next-sidebar-content-inner [class*="nav-item"]:hover,
+.next-sidebar-content-inner [class*="menu-item"]:hover,
+.next-sidebar-content-inner [class*="list-group-item"]:hover,
+#sidebar-menu-items a:hover,
+#sidebar-menu-items [role="menuitem"]:hover,
+#sidebar-menu-items .nav-link:hover,
+#sidebar-menu-items [class*="sidebar-item"]:hover,
+#sidebar-menu-items [class*="nav-item"]:hover,
+#sidebar-menu-items [class*="menu-item"]:hover,
+#sidebar-menu-items [class*="list-group-item"]:hover,
+.next-sidebar a:hover,
+.next-sidebar [class*="sidebar-item"]:hover,
+.next-sidebar [class*="nav-item"]:hover,
+.next-sidebar [class*="menu-item"]:hover,
+.next-sidebar [class*="list-group-item"]:hover {
+    background: #0a6ad9 !important;
+    background-color: #0a6ad9 !important;
+    color: #fff !important;
+    border-color: transparent !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+.next-sidebar-content-inner .active:hover,
+#sidebar-menu-items .active:hover,
+.next-sidebar a.active:hover {
+    background: #0a6ad9 !important;
+    background-color: #0a6ad9 !important;
+    color: #fff !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+/* Texto e iconos en hover: blanco sobre azul, mismo que los botones */
+.next-sidebar-content-inner a:hover,
+.next-sidebar-content-inner a:hover *,
+.next-sidebar-content-inner [class*="menu-item"]:hover,
+.next-sidebar-content-inner [class*="menu-item"]:hover *,
+.next-sidebar-content-inner [class*="nav-item"]:hover,
+.next-sidebar-content-inner [class*="nav-item"]:hover *,
+.next-sidebar-content-inner [class*="list-group-item"]:hover,
+.next-sidebar-content-inner [class*="list-group-item"]:hover *,
+#sidebar-menu-items a:hover,
+#sidebar-menu-items a:hover *,
+#sidebar-menu-items [class*="menu-item"]:hover,
+#sidebar-menu-items [class*="menu-item"]:hover *,
+#sidebar-menu-items [class*="nav-item"]:hover,
+#sidebar-menu-items [class*="nav-item"]:hover *,
+#sidebar-menu-items [class*="list-group-item"]:hover,
+#sidebar-menu-items [class*="list-group-item"]:hover *,
+.next-sidebar a:hover,
+.next-sidebar a:hover *,
+.next-sidebar [class*="menu-item"]:hover,
+.next-sidebar [class*="menu-item"]:hover *,
+.next-sidebar [class*="list-group-item"]:hover,
+.next-sidebar [class*="list-group-item"]:hover * {
+    color: #fff !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+.next-sidebar a:hover svg,
+.next-sidebar a:hover [class*="icon"] svg,
+#sidebar-menu-items a:hover svg,
+#sidebar-menu-items a:hover [class*="icon"] svg {
+    fill: #fff !important;
+    color: #fff !important;
+    opacity: 1 !important;
+}
+/* Hover en el contenedor del ítem: mismo azul que los botones */
+#sidebar-menu-items [class*="menu-item"]:hover,
+#sidebar-menu-items [class*="menu-item"]:hover > a,
+#sidebar-menu-items [class*="nav-item"]:hover,
+#sidebar-menu-items [class*="nav-item"]:hover > a,
+#sidebar-menu-items [class*="list-group-item"]:hover,
+#sidebar-menu-items [class*="list-group-item"]:hover > a,
+.next-sidebar-content-inner [class*="menu-item"]:hover,
+.next-sidebar-content-inner [class*="menu-item"]:hover > a,
+.next-sidebar-content-inner [class*="nav-item"]:hover,
+.next-sidebar-content-inner [class*="nav-item"]:hover > a {
+    background: #0a6ad9 !important;
+    background-color: #0a6ad9 !important;
+    color: #fff !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+#sidebar-menu-items [class*="menu-item"]:hover > a *,
+#sidebar-menu-items [class*="nav-item"]:hover > a *,
+.next-sidebar-content-inner [class*="menu-item"]:hover > a *,
+.next-sidebar-content-inner [class*="nav-item"]:hover > a * {
+    color: #fff !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Sidebar: .next-nav-item (ej. Tablero) — forzar hover azul y contenido visible, anular reglas del engine */
+.next-sidebar .next-nav-item:hover,
+.next-sidebar .next-nav-item.active:hover,
+.next-sidebar-content-inner .next-nav-item:hover,
+.next-sidebar-content-inner .next-nav-item.active:hover,
+#sidebar-menu-items .next-nav-item:hover,
+#sidebar-menu-items .next-nav-item.active:hover,
+body .next-sidebar .next-nav-item:hover,
+body #sidebar-menu-items .next-nav-item:hover {
+    background: #0a6ad9 !important;
+    background-color: #0a6ad9 !important;
+    color: #fff !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: flex !important;
+}
+.next-sidebar .next-nav-item:hover *,
+.next-sidebar .next-nav-item.active:hover *,
+.next-sidebar-content-inner .next-nav-item:hover *,
+.next-sidebar-content-inner .next-nav-item.active:hover *,
+#sidebar-menu-items .next-nav-item:hover *,
+#sidebar-menu-items .next-nav-item.active:hover *,
+body #sidebar-menu-items .next-nav-item:hover *,
+.next-sidebar .next-nav-item:hover .next-nav-item-icon-container,
+.next-sidebar .next-nav-item:hover .truncate,
+.next-sidebar .next-nav-item:hover .next-nav-item-right-side,
+#sidebar-menu-items .next-nav-item:hover .next-nav-item-icon-container,
+#sidebar-menu-items .next-nav-item:hover .truncate,
+#sidebar-menu-items .next-nav-item:hover .next-nav-item-right-side {
+    color: #fff !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+.next-sidebar .next-nav-item:hover .truncate,
+#sidebar-menu-items .next-nav-item:hover .truncate,
+body #sidebar-menu-items .next-nav-item:hover .truncate {
+    display: block !important;
+}
+.next-sidebar .next-nav-item:hover svg,
+.next-sidebar .next-nav-item.active:hover svg,
+#sidebar-menu-items .next-nav-item:hover svg,
+#sidebar-menu-items .next-nav-item.active:hover svg,
+body #sidebar-menu-items .next-nav-item:hover svg {
+    fill: #fff !important;
+    opacity: 1 !important;
+}
+
+/* Engine/Fleet-Ops: primary buttons = bright blue #0D80FF */
+.next-sidebar .btn-primary,
+.next-sidebar button.btn-primary,
+#sidebar-menu-items .btn-primary,
+.next-view-header .btn-primary,
+[class*="fleetops"] .btn-primary.active,
+[class*="fleetops"] .btn-primary:not(.btn-default),
+[class*="engine"] .btn-primary {
+    background-color: #0D80FF !important;
+    border-color: #0D80FF !important;
+    color: #fff !important;
+}
+.next-sidebar .btn-primary:hover,
+#sidebar-menu-items .btn-primary:hover,
+[class*="fleetops"] .btn-primary:hover {
+    background-color: #0a6ad9 !important;
+    border-color: #0a6ad9 !important;
+    color: #fff !important;
+}
+
+/* Blue utilities: use palette bright blue #0D80FF */
+.next-sidebar .bg-blue-500,
+.next-sidebar .bg-blue-600,
+#sidebar-menu-items .bg-blue-500,
+#sidebar-menu-items .bg-blue-600,
+.next-view-header .bg-blue-500,
+.next-view-header .bg-blue-600,
+.next-view-section .bg-blue-500,
+.next-view-section .bg-blue-600,
+[class*="fleetops"] .bg-blue-500,
+[class*="fleetops"] .bg-blue-600 {
+    background-color: #0D80FF !important;
+}
+
+/* Map/view tabs and control buttons: bright blue #0D80FF */
+.next-view-section [role="tab"].active,
+.next-view-section .nav-link.active,
+.next-view-section .tab.active,
+.next-view-section [class*="tab"].active,
+.next-view-section .btn-primary,
+.next-view-section button[class*="btn"]:not(.btn-default),
+[class*="map"] .btn-primary,
+[class*="map"] .active[role="tab"],
+[class*="leaflet"] .btn-primary {
+    background-color: #0D80FF !important;
+    border-color: #0D80FF !important;
+    color: #fff !important;
+}
+.next-view-section [role="tab"].active:hover,
+.next-view-section .nav-link.active:hover,
+[class*="map"] .btn-primary:hover {
+    background-color: #0a6ad9 !important;
+    border-color: #0a6ad9 !important;
+    color: #fff !important;
+}
+
+/* Dashboard / main content: primary buttons and dropdowns = bright blue #0D80FF */
+.next-view-section .btn-primary,
+.next-view-section .btn.btn-primary,
+.next-view-section button.btn-primary,
+.layout-section .btn-primary,
+[class*="dashboard"] .btn-primary,
+[class*="fleetbase-dashboard"] .btn-primary,
+.next-view-section .ember-power-select-trigger,
+.next-view-section [class*="dropdown"] .btn {
+    background-color: #0D80FF !important;
+    border-color: #0D80FF !important;
+    color: #fff !important;
+}
+.next-view-section .btn-primary:hover,
+.next-view-section .btn.btn-primary:hover,
+[class*="dashboard"] .btn-primary:hover,
+.next-view-section .ember-power-select-trigger:hover,
+.next-view-section [class*="dropdown"] .btn:hover {
+    background-color: #0a6ad9 !important;
+    border-color: #0a6ad9 !important;
+    color: #fff !important;
+}
+
+/* Hide language/locale selector - single language (es-mx) only */
+.next-view-header .locale-dropdown,
+.next-view-header [class*="language-selector"],
+.next-view-header a[href*="locale"] {
+    display: none !important;
+}
+
+/* Última prioridad: hover en .next-nav-item no debe ocultar el elemento (mismo azul #0a6ad9 que botones) */
+body #sidebar-menu-items a.next-nav-item:hover,
+body .next-sidebar a.next-nav-item:hover {
+    background: #0a6ad9 !important;
+    background-color: #0a6ad9 !important;
+    color: #fff !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+body #sidebar-menu-items a.next-nav-item:hover *,
+body .next-sidebar a.next-nav-item:hover * {
+    color: #fff !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+body #sidebar-menu-items a.next-nav-item:hover svg {
+    fill: #fff !important;
 }

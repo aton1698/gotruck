@@ -1,6 +1,6 @@
-<div>
+<div class="auth-login">
     <LinkTo @route="console" class="flex items-center justify-center">
-        <LogoIcon @brand={{@brand}} @size="12" class="rounded-md" />
+        <img src="/images/icon.png" alt={{t "app.name"}} class="w-12 h-12 rounded-md" width="48" height="48" />
     </LinkTo>
     <h2 class="mt-6 mb-3 text-3xl font-extrabold leading-9 text-center text-gray-900 dark:text-gray-100">
         {{t "auth.login.title"}}
@@ -40,7 +40,7 @@
                 @type="email"
                 autocomplete="username"
                 required
-                class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-t-md focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5 dark:text-white dark:bg-gray-700 dark:border-gray-900"
+                class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-t-md focus:outline-none focus:shadow-outline focus:border-red-500 focus:z-10 sm:text-sm sm:leading-5 dark:text-white dark:bg-gray-700 dark:border-gray-900"
                 placeholder={{t "auth.login.form.email-label"}}
                 disabled={{this.isLoading}}
             />
@@ -53,7 +53,7 @@
                 @type="password"
                 autocomplete="current-password"
                 required
-                class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-b-md focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5 dark:text-white dark:bg-gray-700 dark:border-gray-900"
+                class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-b-md focus:outline-none focus:shadow-outline focus:border-red-500 focus:z-10 sm:text-sm sm:leading-5 dark:text-white dark:bg-gray-700 dark:border-gray-900"
                 placeholder={{t "auth.login.form.password-label"}}
                 disabled={{this.isLoading}}
             />
@@ -62,7 +62,7 @@
 
     <div class="flex items-center justify-between mt-6">
         <div class="flex items-center">
-            <Input id="rememberMe" @type="checkbox" @checked={{this.rememberMe}} disabled={{this.isLoading}} class="w-4 h-4 transition duration-150 ease-in-out form-checkbox text-sky-500" />
+            <Input id="rememberMe" @type="checkbox" @checked={{this.rememberMe}} disabled={{this.isLoading}} class="w-4 h-4 transition duration-150 ease-in-out form-checkbox text-red-600" />
             <label for="rememberMe" class="block ml-2 text-sm leading-5 text-gray-900 dark:text-gray-100">
                 {{t "auth.login.form.remember-me-label"}}
             </label>
@@ -73,7 +73,7 @@
                 href="javascript:;"
                 {{on "click" this.forgotPassword}}
                 disabled={{this.isLoading}}
-                class="font-medium transition duration-150 ease-in-out text-sky-500 hover:text-sky-400 focus:outline-none focus:underline"
+                class="font-medium transition duration-150 ease-in-out text-red-600 hover:text-red-500 focus:outline-none focus:underline"
             >
                 {{t "auth.login.form.forgot-password-label"}}
             </a>
