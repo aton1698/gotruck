@@ -2,6 +2,7 @@ import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 import removeBootLoader from '../utils/remove-boot-loader';
+import setFavicon from '../utils/set-favicon';
 import '@fleetbase/leaflet-routing-machine';
 
 export default class ConsoleRoute extends Route {
@@ -46,6 +47,7 @@ export default class ConsoleRoute extends Route {
 
         this.hookService.execute('console:after-model', this.session, this.router, model, transition);
         removeBootLoader();
+        setFavicon();
     }
 
     /**
