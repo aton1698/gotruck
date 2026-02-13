@@ -49,7 +49,7 @@ module.exports = function (environment) {
 
         defaultValues: {
             categoryImage: getenv('DEFAULT_CATEGORY_IMAGE', 'https://flb-assets.s3.ap-southeast-1.amazonaws.com/images/fallback-placeholder-1.png'),
-            placeholderImage: getenv('DEFAULT_PLACEHOLDER_IMAGE', 'https://flb-assets.s3.ap-southeast-1.amazonaws.com/static/image-file-icon.png'),
+            placeholderImage: getenv('DEFAULT_PLACEHOLDER_IMAGE', '/images/icon.png'),
             placeholderImageOld: getenv('DEFAULT_PLACEHOLDER_IMAGE_OLD', 'https://flb-assets.s3.ap-southeast-1.amazonaws.com/images/fallback-placeholder-2.png'),
             driverImage: getenv('DEFAULT_DRIVER_IMAGE', 'https://s3.ap-southeast-1.amazonaws.com/flb-assets/static/no-avatar.png'),
             userImage: getenv('DEFAULT_USER_IMAGE', 'https://s3.ap-southeast-1.amazonaws.com/flb-assets/static/no-avatar.png'),
@@ -60,7 +60,7 @@ module.exports = function (environment) {
             vehicleAvatar: getenv('DEFAULT_VEHICLE_AVATAR', 'https://flb-assets.s3-ap-southeast-1.amazonaws.com/static/vehicle-icons/mini_bus.svg'),
             driverAvatar: getenv('DEFAULT_DRIVER_AVATAR', 'https://flb-assets.s3-ap-southeast-1.amazonaws.com/static/driver-icons/moto-driver.png'),
             placeAvatar: getenv('DEFAULT_PLACE_AVATAR', 'https://flb-assets.s3-ap-southeast-1.amazonaws.com/static/place-icons/basic-building.png'),
-            extensionIcon: getenv('DEFAULT_EXTENSION_ICON', 'https://flb-assets.s3.ap-southeast-1.amazonaws.com/static/default-extension-icon.svg'),
+            extensionIcon: getenv('DEFAULT_EXTENSION_ICON', '/images/icon.svg'),
         },
 
         'ember-simple-auth': {

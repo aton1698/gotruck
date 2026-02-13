@@ -12,6 +12,7 @@
                 as |dd|
             >
                 <dd.Trigger class="{{@triggerClass}} local-selector-tray-trigger {{if (media 'isMobile') 'is-mobile'}}">
+                    {{! Same class "next-org-button-trigger" is used by @fleetbase/ember-ui for the globe/language button (FaIcon globe) in the header. That one is not in this repo; it lives in node_modules/@fleetbase/ember-ui and is hidden via app/styles/console.css }}
                     <div class="next-org-button-trigger flex-shrink-0 {{if dd.isOpen 'is-open'}}">
                         <FaIcon @icon="user-secret" @size="sm" />
                     </div>
