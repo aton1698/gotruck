@@ -8,6 +8,11 @@
 
       .cls-2 {
         fill: #fff;
+        stroke: #000;
+        stroke-width: 3;
+        stroke-linejoin: round;
+        stroke-linecap: round;
+        paint-order: stroke fill;
       }
     </style>
   </defs>
