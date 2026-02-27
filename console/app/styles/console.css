@@ -72,3 +72,8 @@ body[data-theme='dark'] #boot-loader > .loader-container > .loading-message {
 .next-org-button-trigger:has(.fa-globe) {
     display: none !important;
 }
+
+/* Botón "Create a new Account" en login (span.btn-wrapper que contiene svg.fa-briefcase) */
+.btn-wrapper:has(.fa-briefcase) {
+    display: none !important;
+}

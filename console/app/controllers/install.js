@@ -47,7 +47,7 @@ export default class InstallController extends Controller {
 
         if (isCompleted) {
             this.notifications.success('Install completed successfully!');
-            return this.router.transitionTo('onboard');
+            return this.router.transitionTo('login');
         }
     }
 

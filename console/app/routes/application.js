@@ -67,7 +67,7 @@ export default class ApplicationRoute extends Route {
         }
 
         if (shouldOnboard) {
-            return this.router.transitionTo('onboard');
+            return this.router.transitionTo('login');
         }
     }
 
