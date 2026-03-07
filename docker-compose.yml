@@ -86,6 +86,10 @@ services:
       - ./console/fleetbase.config.json:/usr/share/nginx/html/fleetbase.config.json
 
   application:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      target: app-release
     image: fleetbase/fleetbase-api:latest
     volumes:
       - ./api/.env:/fleetbase/api/.env
