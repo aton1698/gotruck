@@ -98,6 +98,7 @@ return [
 
         'stdout' => [
             'driver' => 'monolog',
+            'level' => env('LOG_LEVEL', 'info'),
             'handler' => StreamHandler::class,
             'formatter' => JsonFormatter::class,
             'with' => [
