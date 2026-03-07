@@ -80,7 +80,10 @@ services:
       args:
         ENVIRONMENT: development
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 36709f25750bbce68005e566aabd20c1bb6dfaa0
     image: fleetbase/fleetbase-console:latest
 >>>>>>> 36709f2 (Add go truck branding)
     ports:
