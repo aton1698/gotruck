@@ -192,7 +192,7 @@ echo "✔  Database is ready."
 ###############################################################################
 echo "⏳  Running deploy script inside the application container..."
 docker compose exec application bash -c "./deploy.sh"
-docker compose up -d
+docker compose up --build -d
 
 echo
 echo "🏁  Fleetbase is up!"

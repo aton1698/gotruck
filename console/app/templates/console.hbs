@@ -1,13 +1,12 @@
-{{page-title (t "app.name")}}
 <Layout::Container>
     <Layout::Header
-        @brand={{@model}}
+        @brand={{this.headerBrand}}
         @menuItems={{this.menuItems}}
         @organizationMenuItems={{this.organizationMenuItems}}
         @userMenuItems={{this.userMenuItems}}
         @onAction={{this.onAction}}
-        @showSidebarToggle={{true}}
-        @sidebarToggleEnabled={{true}}
+        @showSidebarToggle={{this.showSidebarToggle}}
+        @sidebarToggleEnabled={{this.sidebarToggleEnabled}}
         @onSidebarToggle={{this.onSidebarToggle}}
     />
     <Layout::Main class={{this.currentRouteClass}}>
@@ -23,7 +22,7 @@
         <ResourceContextPanel />
     </Layout::Main>
     <Layout::MobileNavbar
-        @brand={{@model}}
+        @brand={{this.headerBrand}}
         @user={{this.user}}
         @organizations={{this.organizations}}
         @menuItems={{this.menuItems}}

@@ -79,6 +79,10 @@ services:
       dockerfile: Dockerfile
       args:
         ENVIRONMENT: development
+<<<<<<< HEAD
+=======
+    image: fleetbase/fleetbase-console:latest
+>>>>>>> 36709f2 (Add go truck branding)
     ports:
       - "4200:4200"
     volumes:

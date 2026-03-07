@@ -22,9 +22,20 @@ export default class ConsoleController extends Controller {
     @tracked sidebarContext;
     @tracked sidebarToggleState = {};
     @tracked hiddenSidebarRoutes = ['console.home', 'console.notifications', 'console.virtual'];
+    @tracked sidebarToggleEnabled = true;
     @tracked menuItems = [];
     @tracked userMenuItems = [];
     @tracked organizationMenuItems = [];
+
+    get headerBrand() {
+        const m = this.model;
+        if (!m) return { icon_url: '/images/icon.png' };
+        return { icon_url: '/images/icon.png', logo_url: m.logo_url, name: m.name };
+    }
+
+    get showSidebarToggle() {
+        return this.router.currentRouteName !== 'console.home';
+    }
 
     get currentRouteClass() {
         return dasherize(this.router.currentRouteName.replace(/\./g, ' '));

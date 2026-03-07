@@ -56,3 +56,6 @@ builds/osx/frankenphp
 *.dll
 *.so
 *.dylib
+
+# backup files (e.g. docker-compose.override.yml.bak.20260212170043, console.css.bak.*)
+*.bak.*
