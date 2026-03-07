@@ -174,11 +174,14 @@ export default class AuthTwoFaController extends Controller {
 
         try {
             const { identity, token } = this;
+            console.log('[SMS Auth] Step 1: two-fa/resend – identity present?', !!identity, 'token present?', !!token);
+            console.log('[SMS Auth] Step 2: POST two-fa/resend');
             const { clientToken } = await this.fetch.post('two-fa/resend', {
                 identity,
                 token,
             });
 
+            console.log('[SMS Auth] Step 3: two-fa/resend response – clientToken?', !!clientToken);
             if (clientToken) {
                 this.clientToken = clientToken;
                 this.twoFactorSessionExpiresAfter = this.getExpirationDateFromClientToken(clientToken);
@@ -186,10 +189,15 @@ export default class AuthTwoFaController extends Controller {
                 this.isCodeExpired = false;
                 this.notifications.success(this.intl.t('auth.two-fa.resend-code.verification-code-resent-notification'));
             } else {
+                console.warn('[SMS Auth] Step 3: No clientToken in response.');
                 this.notifications.error(this.intl.t('auth.two-fa.resend-code.verification-code-resent-error-notification'));
             }
         } catch (error) {
-            // Handle errors, show error notifications, etc.
+            console.error('[SMS Auth] Step 3 FAIL: two-fa/resend error', {
+                message: error?.message,
+                status: error?.status,
+                payload: error?.payload ?? error?.errors,
+            });
             this.notifications.error(this.intl.t('auth.two-fa.resend-code.verification-code-resent-error-notification'));
         }
     }

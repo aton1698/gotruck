@@ -38,15 +38,25 @@ export default class UserVerificationService extends Service {
             confirm: async (modal) => {
                 modal.startLoading();
                 const phone = modal.getOption('phone');
+                console.log('[SMS Auth] Step 1: Resend by SMS (user-verification) – phone?', !!phone, 'session?', !!this.hello);
                 if (!phone) {
+                    console.error('[SMS Auth] Step 1 FAIL: No phone number provided.');
                     this.notifications.error('No phone number provided.');
+                    return;
                 }
 
                 try {
+                    console.log('[SMS Auth] Step 2: POST onboard/send-verification-sms', { hasSession: !!this.hello });
                     await this.fetch.post('onboard/send-verification-sms', { phone, session: this.hello });
+                    console.log('[SMS Auth] Step 3: SMS verification sent successfully.');
                     this.notifications.success('Verification code SMS sent!');
                     modal.done();
                 } catch (error) {
+                    console.error('[SMS Auth] Step 3 FAIL: Error sending SMS', {
+                        message: error?.message,
+                        status: error?.status,
+                        payload: error?.payload ?? error?.errors,
+                    });
                     this.notifications.serverError(error);
                     modal.stopLoading();
                 }

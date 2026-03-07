@@ -55,18 +55,24 @@ export default class AuthTwoFaRoute extends Route {
     beforeModel(transition) {
         // validate 2fa session with server
         let { token, clientToken } = transition.to.queryParams;
+        console.log('[SMS Auth] two-fa route: beforeModel – token?', !!token, 'clientToken?', !!clientToken);
 
         return this.session.store.restore().then(({ identity }) => {
+            console.log('[SMS Auth] two-fa route: identity from store?', !!identity);
             if (!identity) {
+                console.error('[SMS Auth] two-fa route FAIL: No identity in session.');
                 this.notifications.error('2FA failed to initialize.');
                 return this.router.transitionTo('auth.login');
             }
 
+            console.log('[SMS Auth] Step 1: POST two-fa/validate');
             return this.fetch
                 .post('two-fa/validate', { token, identity, clientToken })
                 .then(({ clientToken, expired }) => {
+                    console.log('[SMS Auth] Step 2: two-fa/validate response – clientToken?', !!clientToken, 'expired?', expired);
                     // handle when code expired
                     if (expired === true) {
+                        console.warn('[SMS Auth] two-fa session expired, invalidating.');
                         return this.invalidateTwoFaSession(token, identity);
                     }
 
@@ -78,6 +84,11 @@ export default class AuthTwoFaRoute extends Route {
                     });
                 })
                 .catch((error) => {
+                    console.error('[SMS Auth] Step 2 FAIL: two-fa/validate error', {
+                        message: error?.message,
+                        status: error?.status,
+                        payload: error?.payload ?? error?.errors,
+                    });
                     this.notifications.serverError(error);
                     return this.router.transitionTo('auth.login');
                 });

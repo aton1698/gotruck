@@ -85,15 +85,26 @@ export default class AuthVerificationController extends Controller {
             confirm: async (modal) => {
                 modal.startLoading();
                 const phone = modal.getOption('phone');
+                console.log('[SMS Auth] Step 1: Resend by SMS – phone present?', !!phone, 'session present?', !!this.hello);
                 if (!phone) {
+                    console.error('[SMS Auth] Step 1 FAIL: No phone number provided.');
                     this.notifications.error('No phone number provided.');
+                    return;
                 }
 
                 try {
+                    const phoneMask = typeof phone === 'string' && phone.length > 4 ? '***' + phone.slice(-4) : '(redacted)';
+                    console.log('[SMS Auth] Step 2: POST onboard/send-verification-sms', { phone: phoneMask, hasSession: !!this.hello });
                     await this.fetch.post('onboard/send-verification-sms', { phone, session: this.hello });
+                    console.log('[SMS Auth] Step 3: SMS verification sent successfully.');
                     this.notifications.success('Verification code SMS sent!');
                     modal.done();
                 } catch (error) {
+                    console.error('[SMS Auth] Step 3 FAIL: Error sending SMS', {
+                        message: error?.message,
+                        status: error?.status,
+                        payload: error?.payload ?? error?.errors,
+                    });
                     this.notifications.serverError(error);
                     modal.stopLoading();
                 }

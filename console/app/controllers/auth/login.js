@@ -106,9 +106,12 @@ export default class AuthLoginController extends Controller {
 
         // send request to check for 2fa
         try {
+            console.log('[SMS Auth] Login: Checking for 2FA...', { identity: identity ? `${identity.slice(0, 3)}***` : '' });
             let { twoFaSession, isTwoFaEnabled } = await this.session.checkForTwoFactor(identity);
+            console.log('[SMS Auth] Login: 2FA check result – isTwoFaEnabled?', isTwoFaEnabled, 'twoFaSession?', !!twoFaSession);
 
             if (isTwoFaEnabled) {
+                console.log('[SMS Auth] Login: Redirecting to two-fa route with token.');
                 return this.session.store
                     .persist({ identity })
                     .then(() => {
@@ -124,6 +127,7 @@ export default class AuthLoginController extends Controller {
                     });
             }
         } catch (error) {
+            console.error('[SMS Auth] Login: checkForTwoFactor failed', { message: error?.message, status: error?.status });
             return this.notifications.serverError(error);
         }
 
