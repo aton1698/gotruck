@@ -1,6 +1,6 @@
 <div class="mb-8 text-center">
     <LinkTo @route="console" class="flex items-center justify-center">
-        <LogoIcon @brand={{@brand}} @size="12" class="rounded-md" />
+        <Image src={{or @brand.icon_url "/images/icon.png"}} @fallbackSrc="/images/icon.png" alt={{t "app.name"}} width="48" height="48" class="w-12 h-12 rounded-md" />
     </LinkTo>
     <h2 class="text-lg font-extrabold text-gray-900 dark:text-white truncate">
         {{if this.isSent "Verification Code"}}

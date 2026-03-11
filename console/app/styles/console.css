@@ -67,3 +67,8 @@ body.console-admin-organizations-index-index .next-table-wrapper > table {
 body[data-theme='dark'] #boot-loader > .loader-container > .loading-message {
     color: #fff;
 }
+
+/* Solo este elemento: div.next-org-button-trigger que contiene svg.fa-globe (botón idioma) */
+.next-org-button-trigger:has(.fa-globe) {
+    display: none !important;
+}

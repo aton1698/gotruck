@@ -96,7 +96,7 @@ else
 fi
 
 ###############################################################################
-# 6. Write console/fleetbase.config.json atomically
+# 6. Write console/fleetbase.config.json atomically (for development runtime)
 ###############################################################################
 CONFIG_DIR="console"
 CONFIG_PATH="$CONFIG_DIR/fleetbase.config.json"
@@ -114,6 +114,36 @@ mv -f "${CONFIG_PATH}.tmp" "$CONFIG_PATH"
 echo "✔  $CONFIG_PATH updated"
 
 ###############################################################################
+# 6b. Update console environment files (.env.development and .env.production)
+###############################################################################
+ENV_DIR="$CONFIG_DIR/environments"
+
+# Update .env.development
+cat > "$ENV_DIR/.env.development" <<ENV_DEV
+API_HOST=http://$HOST:8000
+API_NAMESPACE=int/v1
+SOCKETCLUSTER_PATH=/socketcluster/
+SOCKETCLUSTER_HOST=$HOST
+SOCKETCLUSTER_SECURE=false
+SOCKETCLUSTER_PORT=38000
+OSRM_HOST=https://router.project-osrm.org
+ENV_DEV
+
+# Update .env.production
+cat > "$ENV_DIR/.env.production" <<ENV_PROD
+API_HOST=https://$HOST:8000
+API_NAMESPACE=int/v1
+API_SECURE=true
+SOCKETCLUSTER_PATH=/socketcluster/
+SOCKETCLUSTER_HOST=$HOST
+SOCKETCLUSTER_SECURE=true
+SOCKETCLUSTER_PORT=38000
+OSRM_HOST=https://router.project-osrm.org
+ENV_PROD
+
+echo "✔  Console environment files updated"
+
+###############################################################################
 # 7. Start stack, wait for DB, then run deploy
 ###############################################################################
 echo "⏳  Starting Fleetbase containers..."
@@ -125,7 +155,7 @@ docker compose up -d
 DB_SERVICE="database"     # ← change if your docker‑compose uses a different name
 DB_WAIT_TIMEOUT=60        # seconds
 
-echo "⏳  Waiting for “$DB_SERVICE” to become ready (timeout: ${DB_WAIT_TIMEOUT}s)…"
+echo "⏳  Waiting for $DB_SERVICE to become ready (timeout: ${DB_WAIT_TIMEOUT}s)..."
 DB_CONTAINER=$(docker compose ps -q "$DB_SERVICE")
 
 if [ -z "$DB_CONTAINER" ]; then
@@ -162,7 +192,7 @@ echo "✔  Database is ready."
 ###############################################################################
 echo "⏳  Running deploy script inside the application container..."
 docker compose exec application bash -c "./deploy.sh"
-docker compose up -d
+docker compose up --build -d
 
 echo
 echo "🏁  Fleetbase is up!"
